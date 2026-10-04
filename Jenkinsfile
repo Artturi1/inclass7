@@ -11,7 +11,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_REPO = 'artturi1/temperature-converter'
+        DOCKERHUB_REPO = 'artturi1/inclass7'
     }
 
     stages {
