@@ -11,7 +11,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_REPO = 'sdadadasdas/inclass7'
+        DOCKERHUB_REPO = 'sdadadasdas/inclass'
     }
 
     stages {
