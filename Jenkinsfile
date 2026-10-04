@@ -65,7 +65,8 @@ pipeline {
                     passwordVariable: 'DOCKERHUB_TOKEN'
                 )]) {
                     powershell '''
-                        $env:DOCKERHUB_TOKEN | docker login --username $env:DOCKERHUB_USERNAME --password-stdin
+                        $dockerHubToken = $env:DOCKERHUB_TOKEN.Trim()
+                        $dockerHubToken | docker login --username $env:DOCKERHUB_USERNAME --password-stdin
                         if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
                         docker push "$($env:DOCKERHUB_REPO):latest"
