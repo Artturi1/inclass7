@@ -41,16 +41,9 @@ pipeline {
             }
         }
 
-        stage('Publish Coverage Report') {
+        stage('Archive Coverage Report') {
             steps {
-                publishHTML(target: [
-                    reportDir: 'target/site/jacoco',
-                    reportFiles: 'index.html',
-                    reportName: 'Code Coverage Report',
-                    keepAll: true,
-                    alwaysLinkToLastBuild: true,
-                    allowMissing: true
-                ])
+                archiveArtifacts artifacts: 'target/site/jacoco/**', fingerprint: true
             }
         }
     }
