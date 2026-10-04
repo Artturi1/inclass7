@@ -19,38 +19,32 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('TemperatureConverter_InClass4') {
-                    bat 'mvn clean compile'
-                }
+                bat 'mvn -B clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                dir('TemperatureConverter_InClass4') {
-                    bat 'mvn test'
-                }
+                bat 'mvn -B test'
             }
         }
 
         stage('Code Coverage') {
             steps {
-                dir('TemperatureConverter_InClass4') {
-                    bat 'mvn jacoco:report'
-                }
+                bat 'mvn -B jacoco:report'
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                junit 'TemperatureConverter_InClass4/target/surefire-reports/*.xml'
+                junit 'target/surefire-reports/*.xml'
             }
         }
 
         stage('Publish Coverage Report') {
             steps {
                 publishHTML(target: [
-                    reportDir: 'TemperatureConverter_InClass4/target/site/jacoco',
+                    reportDir: 'target/site/jacoco',
                     reportFiles: 'index.html',
                     reportName: 'Code Coverage Report',
                     keepAll: true,
